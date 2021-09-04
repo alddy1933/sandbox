@@ -2,8 +2,8 @@
 
 @section('content')
     <ul>
-        <li>Nama : {{ $student->nama }}</li>
-        <li>Jurusan : {{ $student->jurusan }}</li>
+        <li>Nama : {{ $student->name }}</li>
+        <li>Jurusan : <a href="/students/major/{{ $student->major->slug }}">{{ $student->major->name }}</a></li>
     </ul>
     <a href="/students">Back</a>
 @endsection

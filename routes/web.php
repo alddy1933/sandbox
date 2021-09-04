@@ -4,6 +4,8 @@ use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 
+use App\Models\Major;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,5 +21,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/students', StudentController::class);
+Route::get('/students', [StudentController::class, 'index']);
+Route::get('/students/{student}', [StudentController::class, 'show']);
+
+Route::get('/students/major/{major:slug}', function (Major $major) {
+    $data = [
+        'title' => $major->name,
+        'students' => $major->students,
+        'major' => $major->name,
+    ];
+    return view('student.major', $data);
+});
+
 Route::get('/about', [AboutController::class, 'index']);

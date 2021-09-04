@@ -16,9 +16,11 @@
                     @foreach ($students as $s)
                         <tr>
                             <th scope="row">1</th>
-                            <td>{{ $s->nama }}</td>
-                            <td>{{ $s->jurusan }}</td>
-                            <td><a href="/students/{{ $s->id }}" class="btn btn-success">Lihat</a></td>
+                            <td>{{ $s->name }}</td>
+                            <td>{{ $s->major->name }}</td>
+                            <td>
+                                <a href="/students/{{ $s->id }}" class="btn btn-success">Lihat</a>
+                            </td>                           
                         </tr>
                     @endforeach
                 </tbody>
