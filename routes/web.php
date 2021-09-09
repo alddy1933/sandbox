@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\MajorController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\PostController;
 
 use App\Models\Major;
 
@@ -18,19 +20,20 @@ use App\Models\Major;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $data = ['title' => 'Beranda'];
+    return view('home.index', $data);
 });
+
+Route::get('/posts', [PostController::class, 'index']);
+Route::get('/post/create', [PostController::class, 'create']);
+Route::post('/post/store', [PostController::class, 'store']);
+Route::get('/post/{post}', [PostController::class, 'show']);
 
 Route::get('/students', [StudentController::class, 'index']);
-Route::get('/students/{student}', [StudentController::class, 'show']);
+Route::get('/student/{student}', [StudentController::class, 'show']);
 
-Route::get('/students/major/{major:slug}', function (Major $major) {
-    $data = [
-        'title' => $major->name,
-        'students' => $major->students,
-        'major' => $major->name,
-    ];
-    return view('student.major', $data);
-});
+Route::get('/majors', [MajorController::class, 'index']);
+Route::get('/major/{major:slug}/students', [MajorController::class, 'studentList']);
+Route::get('/major/{major:slug}/info', [MajorController::class, 'info']);
 
 Route::get('/about', [AboutController::class, 'index']);

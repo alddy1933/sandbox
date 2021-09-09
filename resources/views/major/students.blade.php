@@ -2,10 +2,11 @@
 
 @section('content')
     <h4>Jurusan : {{ $major }}</h4>
+    <a href="/major/{{ $slug }}/info">info</a>
     <ul>
         @foreach ($students as $s)
             <li>
-                <p>Nama : {{ $s->name }}</p>
+                <p>{{ $s->name }}</p>
             </li>
         @endforeach
     </ul>

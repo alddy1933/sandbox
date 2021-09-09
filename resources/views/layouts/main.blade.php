@@ -13,6 +13,7 @@
   <body>
 
     @include('layouts.snippets.navbar')
+    @include('layouts.snippets.modal')
 
     <div class="container mt-4">
         @yield('content')

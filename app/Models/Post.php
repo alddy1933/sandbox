@@ -5,17 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Student extends Model
+class Post extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
 
-    public function major()
+    public function student()
     {
-        return $this->belongsTo(Major::class);
-    }
-    public function posts()
-    {
-        return $this->hasMany(Post::class);
+        return $this->belongsTo(Student::class);
     }
 }

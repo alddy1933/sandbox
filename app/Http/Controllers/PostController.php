@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Student;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
-class StudentController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +15,10 @@ class StudentController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'Data Siswa',
-            'students' => Student::all(),
+            'title' => 'Post',
+            'posts' => Post::all()
         ];
-        return view('student.index', $data);
+        return view('post.index', $data);
     }
 
     /**
@@ -28,7 +28,10 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'title' => 'Post'
+        ];
+        return view('post.create', $data);
     }
 
     /**
@@ -39,32 +42,37 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required'
+        ]);
+        Post::create($request->all());
+        return redirect('/posts')->with('success', 'Post baru telah ditambah');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Student  $student
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Student $student)
+    public function show(Post $post)
     {
         $data = [
-            'title' => 'Data Siswa',
-            'student' => $student,
-            'posts' => $student->posts,
+            'title' => 'Post',
+            'post' => $post,
+            'student' => $post->student
         ];
-        return view('student.show', $data);
+        return view('post.show', $data);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Student  $student
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Student $student)
+    public function edit(Post $post)
     {
         //
     }
@@ -73,10 +81,10 @@ class StudentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Student  $student
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(Request $request, Post $post)
     {
         //
     }
@@ -84,10 +92,10 @@ class StudentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Student  $student
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Student $student)
+    public function destroy(Post $post)
     {
         //
     }

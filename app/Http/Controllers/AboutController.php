@@ -9,7 +9,7 @@ class AboutController extends Controller
     public function index()
     {
         $data = [
-            'title' => 'About'
+            'title' => 'Tentang'
         ];
 
         return view('about.index', $data);
