@@ -47,7 +47,7 @@ class PostController extends Controller
             'content' => 'required'
         ]);
         Post::create($request->all());
-        return redirect('/posts')->with('success', 'Post baru telah ditambah');
+        return redirect('/posts')->with('create_success', 'Post baru telah ditambah');
     }
 
     /**
@@ -97,6 +97,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect('/posts')->with('delete_success', 'Post berhasil dihapus');
     }
 }

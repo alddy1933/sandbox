@@ -4,7 +4,10 @@
     <a href="/post/create">Tambah data</a>
     <div class="row">
         <div class="col-7">
-            @if ($message = Session::get('success'))
+            @if ($message = Session::get('create_success'))
+                <div class="alert alert-success"><p>{{ $message }}</p></div>
+            @endif
+            @if ($message = Session::get('delete_success'))
                 <div class="alert alert-success"><p>{{ $message }}</p></div>
             @endif
             <table class="table">
@@ -25,6 +28,7 @@
                             <td>{{ Str::substr($p->content, 0, 10).'. . . ' }}</td>
                             <td>
                                 <a href="/post/{{ $p->id }}" class="btn btn-success">Lihat</a>
+                                <a href="/post/{{ $p->id }}/delete" class="btn btn-danger">Hapus</a>
                             </td>                           
                         </tr>
                     @endforeach

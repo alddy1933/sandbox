@@ -28,6 +28,7 @@ Route::get('/posts', [PostController::class, 'index']);
 Route::get('/post/create', [PostController::class, 'create']);
 Route::post('/post/store', [PostController::class, 'store']);
 Route::get('/post/{post}', [PostController::class, 'show']);
+Route::get('/post/{post}/delete', [PostController::class, 'destroy']);
 
 Route::get('/students', [StudentController::class, 'index']);
 Route::get('/student/{student}', [StudentController::class, 'show']);
