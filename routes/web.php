@@ -28,6 +28,8 @@ Route::get('/posts', [PostController::class, 'index']);
 Route::get('/post/create', [PostController::class, 'create']);
 Route::post('/post/store', [PostController::class, 'store']);
 Route::get('/post/{post}', [PostController::class, 'show']);
+Route::get('/post/{post}/edit', [PostController::class, 'edit']);
+Route::post('/post/{post}/update', [PostController::class, 'update']);
 Route::get('/post/{post}/delete', [PostController::class, 'destroy']);
 
 Route::get('/students', [StudentController::class, 'index']);

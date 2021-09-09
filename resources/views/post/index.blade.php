@@ -4,10 +4,7 @@
     <a href="/post/create">Tambah data</a>
     <div class="row">
         <div class="col-7">
-            @if ($message = Session::get('create_success'))
-                <div class="alert alert-success"><p>{{ $message }}</p></div>
-            @endif
-            @if ($message = Session::get('delete_success'))
+            @if ($message = Session::get('success'))
                 <div class="alert alert-success"><p>{{ $message }}</p></div>
             @endif
             <table class="table">

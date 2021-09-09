@@ -47,7 +47,7 @@ class PostController extends Controller
             'content' => 'required'
         ]);
         Post::create($request->all());
-        return redirect('/posts')->with('create_success', 'Post baru telah ditambah');
+        return redirect('/posts')->with('success', 'Post baru telah ditambah');
     }
 
     /**
@@ -74,7 +74,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $data = [
+            'title' => 'Post',
+            'post' => $post
+        ];
+        return view('post.edit', $data);
     }
 
     /**
@@ -86,7 +90,12 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required'
+        ]);
+        $post->update($request->all());
+        return redirect('/posts')->with('success', 'Post berhasil diubah');
     }
 
     /**
@@ -98,6 +107,6 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        return redirect('/posts')->with('delete_success', 'Post berhasil dihapus');
+        return redirect('/posts')->with('success', 'Post berhasil dihapus');
     }
 }
